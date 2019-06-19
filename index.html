@@ -29,7 +29,14 @@
 
       class Products extends React.Component {
         render() {
-          return <h3>Products Page</h3>
+          const { data } = this.props.state
+          console.log('products', data)
+          return (
+            <div>
+              <h3>Products Page   ({data.length })</h3>
+              {data.map(person => <h4 key={person.name}>{person.name}</h4>)}
+            </div>
+          )
         }
       }
 
@@ -56,7 +63,6 @@
 
         render() {
           const { data } = this.state;
-          console.log(data)
           return (
             <HashRouter>
               <div>
@@ -67,7 +73,7 @@
                 <Link to='/create'>Create</Link>
               </div>
               <Route path='/' exact component={ Home } />
-              <Route path='/products' render={ Products } />
+              <Route path='/products' render={() => <Products state={this.state} /> } />
               <Route path='/create' component={ Create } />
             </HashRouter>
           )
