@@ -23,25 +23,36 @@
           <div>
             <h3>Home Page</h3>
           </div>
-
         )
       }
 
       class Products extends React.Component {
         render() {
-          const { data } = this.props.state
-          console.log('products', data)
+          const { data } = this.props.state;
           return (
             <div>
               <h3>Products Page   ({data.length })</h3>
-              {data.map(person => <h4 key={person.name}>{person.name}</h4>)}
+              {data.map(person => {
+                return <div key={person.name}>
+                  <h4>{person.name}</h4>
+                  <button>Delete {person.name}</button>
+                </div>
+                })}
             </div>
           )
         }
       }
 
       const Create = () => {
-        return <h3>Create Page</h3>
+        return (
+          <div>
+            <h3>Create Page</h3>
+            <form>
+              <input type='text' />
+              <input type="submit" vlaue="Submit" />
+            </form>
+          </div>
+        )
       }
 
       class App extends React.Component {
@@ -60,6 +71,12 @@
             console.error(err);
           }
         }
+
+        /** TODO: delete method and pass down to Products component
+         *
+         * TODO: create method  and pass down to Creat component   **/
+
+
 
         render() {
           const { data } = this.state;
